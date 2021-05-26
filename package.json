@@ -1,10 +1,14 @@
 {
   "name": "next-remove-imports",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.3",
+  "description": "Remove the import of global CSS from node_modules.",
   "main": "index.js",
-  "author": "",
+  "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/next-remove-imports"
+  },
   "dependencies": {
     "@babel/core": "^7.14.3",
     "babel-loader": "^8.2.2",
