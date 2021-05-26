@@ -1,0 +1,13 @@
+{
+  "name": "next-remove-imports",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-transform-remove-imports": "^1.5.4"
+  }
+}
