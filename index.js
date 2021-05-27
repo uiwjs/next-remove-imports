@@ -1,6 +1,6 @@
 module.exports = (pluginOptions = {}) => (nextConfig = {}) => {
   const test = pluginOptions.test || /node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/;
-  const matchImports = pluginOptions.matchImports || "\\.(less|css)$";
+  const matchImports = pluginOptions.matchImports || "\\.(less|css|scss|sass|styl)$";
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
       if (!options.isServer) {
