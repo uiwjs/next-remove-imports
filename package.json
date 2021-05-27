@@ -1,6 +1,6 @@
 {
   "name": "next-remove-imports",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Remove the import of global CSS from node_modules.",
   "main": "index.js",
   "author": "kenny wang <wowohoo@qq.com>",
