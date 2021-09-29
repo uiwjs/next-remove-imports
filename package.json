@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/uiwjs/next-remove-imports"
   },
+  "files": [
+    "index.js"
+  ],
   "keywords": [
     "nextjs",
     "serverless",
