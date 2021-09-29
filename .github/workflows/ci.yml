@@ -15,7 +15,7 @@ jobs:
 
       - run: mkdir -p build
       - run: npm i markdown-to-html-cli -g
-      - run: markdown-to-html --output build/index.html
+      - run: markdown-to-html --output build/index.html --github-corners https://github.com/uiwjs/next-remove-imports
 
       - name: Build and Deploy
         uses: peaceiris/actions-gh-pages@v3
