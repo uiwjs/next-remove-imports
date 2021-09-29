@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>next-remove-imports</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta description="The default behavior is to remove all &#x60;.less&#x60;/&#x60;.css&#x60;/&#x60;.scss&#x60;/&#x60;.sass&#x60;/&#x60;.styl&#x60; imports from all packages in node_modules.">
+    <meta keywords="nextjs,serverless,plugin,next">
+    <style>.task-list-item {
+list-style-type: none
+}
+.task-list-item label {
+font-weight: 400
+}
+.task-list-item.enabled label {
+cursor: pointer
+}
+.task-list-item+.task-list-item {
+margin-top: 3px
+}
+.task-list-item .handle {
+display: none
+}
+.task-list-item-checkbox {
+margin: 0 .2em .25em -1.6em;
+vertical-align: middle
+}
+.wmde-markdown h1,.wmde-markdown h2,.wmde-markdown h3,.wmde-markdown h4,.wmde-markdown h5,.wmde-markdown h6 {
+font-weight: 600;
+line-height: 1.25;
+margin-bottom: 16px;
+margin-top: 24px
+}
+.wmde-markdown h1 .anchor,.wmde-markdown h2 .anchor,.wmde-markdown h3 .anchor,.wmde-markdown h4 .anchor,.wmde-markdown h5 .anchor,.wmde-markdown h6 .anchor {
+float: left;
+padding-right: 4px;
+margin-left: -20px;
+line-height: 1
+}
+.wmde-markdown h1 .octicon-link,.wmde-markdown h2 .octicon-link,.wmde-markdown h3 .octicon-link,.wmde-markdown h4 .octicon-link,.wmde-markdown h5 .octicon-link,.wmde-markdown h6 .octicon-link {
+visibility: hidden;
+vertical-align: middle
+}
+.wmde-markdown h1:hover .octicon-link,.wmde-markdown h2:hover .octicon-link,.wmde-markdown h3:hover .octicon-link,.wmde-markdown h4:hover .octicon-link,.wmde-markdown h5:hover .octicon-link,.wmde-markdown h6:hover .octicon-link {
+visibility: visible
+}
+.github-corner:hover .octo-arm {
+-webkit-animation: octocat-wave .56s ease-in-out;
+animation: octocat-wave .56s ease-in-out
+}
+@-webkit-keyframes octocat-wave {
+0%, to {
+-webkit-transform: rotate(0);
+transform: rotate(0);
+}
+20%, 60% {
+-webkit-transform: rotate(-25deg);
+transform: rotate(-25deg);
+}
+40%, 80% {
+-webkit-transform: rotate(10deg);
+transform: rotate(10deg);
+}
+}
+@keyframes octocat-wave {
+0%, to {
+-webkit-transform: rotate(0);
+transform: rotate(0)
+}
+20%, 60% {
+-webkit-transform: rotate(-25deg);
+transform: rotate(-25deg);
+}
+40%, 80% {
+-webkit-transform: rotate(10deg);
+transform: rotate(10deg);
+}
+}
+.wmde-markdown {
+font-size: 16px;
+line-height: 1.5;
+font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+max-width: 1024px;
+margin: 28px auto 60px auto;
+}
+.wmde-markdown > :first-child {
+margin-top: 0 !important;
+}
+.wmde-markdown > :last-child {
+margin-bottom: 0 !important;
+}
+.wmde-markdown code[class*="language-"],
+.wmde-markdown pre[class*="language-"] {
+color: black;
+text-align: left;
+white-space: pre;
+word-spacing: normal;
+word-break: normal;
+word-wrap: normal;
+-webkit-hyphens: none;
+hyphens: none;
+}
+.wmde-markdown pre code {
+background: none;
+overflow-wrap: normal;
+white-space: inherit;
+-moz-tab-size: 2;
+tab-size: 2;
+padding: 16px;
+font-size: 95%;
+line-height: 1.5;
+display: block;
+text-shadow: 0 1px #fff;
+}
+.wmde-markdown pre {
+margin-bottom: 18px;
+font-size: 85%;
+line-height: 1.45;
+position: relative;
+overflow-x: auto;
+background-color: #f6f8fa;
+border-radius: 3px;
+}
+.wmde-markdown code,
+.wmde-markdown tt {
+background-color: rgba(27, 31, 35, 0.05);
+border-radius: 3px;
+font-size: 85%;
+margin: 0;
+padding: 0.2em 0.4em;
+}
+.wmde-markdown pre,
+.wmde-markdown code,
+.wmde-markdown tt {
+font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+}
+.wmde-markdown img {
+max-width: 100%;
+}
+.wmde-markdown input {
+vertical-align: middle;
+margin: 0 0.2em 0.25em -1.6em;
+}
+.wmde-markdown input + p {
+display: inline;
+}
+.wmde-markdown h1,
+.wmde-markdown h2 {
+border-bottom: 1px solid #eaecef;
+padding-bottom: 0.3em;
+}
+.wmde-markdown h1,
+.wmde-markdown h2,
+.wmde-markdown h3,
+.wmde-markdown h4,
+.wmde-markdown h5,
+.wmde-markdown h6 {
+font-weight: 600;
+line-height: 1.25;
+margin-bottom: 16px;
+margin-top: 24px;
+}
+.wmde-markdown h1 .anchor,
+.wmde-markdown h2 .anchor,
+.wmde-markdown h3 .anchor,
+.wmde-markdown h4 .anchor,
+.wmde-markdown h5 .anchor,
+.wmde-markdown h6 .anchor {
+float: left;
+padding-right: 4px;
+margin-left: -20px;
+line-height: 1;
+}
+.wmde-markdown h1 .octicon-link,
+.wmde-markdown h2 .octicon-link,
+.wmde-markdown h3 .octicon-link,
+.wmde-markdown h4 .octicon-link,
+.wmde-markdown h5 .octicon-link,
+.wmde-markdown h6 .octicon-link {
+visibility: hidden;
+vertical-align: middle;
+}
+.wmde-markdown h1:hover .octicon-link,
+.wmde-markdown h2:hover .octicon-link,
+.wmde-markdown h3:hover .octicon-link,
+.wmde-markdown h4:hover .octicon-link,
+.wmde-markdown h5:hover .octicon-link,
+.wmde-markdown h6:hover .octicon-link {
+visibility: visible;
+}
+.wmde-markdown h1 {
+font-size: 2em;
+}
+.wmde-markdown h2 {
+font-size: 1.5em;
+}
+.wmde-markdown h3 {
+font-size: 1.25em;
+}
+.wmde-markdown h4 {
+font-size: 1em;
+}
+.wmde-markdown h5 {
+font-size: 0.875em;
+}
+.wmde-markdown h6 {
+font-size: 0.85em;
+}
+.wmde-markdown ol,
+.wmde-markdown ul {
+padding-left: 2em;
+}
+.wmde-markdown ol > p,
+.wmde-markdown ul > p {
+margin-bottom: 0;
+}
+.wmde-markdown ul {
+margin-bottom: 16px;
+margin-top: 0;
+list-style: initial;
+}
+.wmde-markdown > blockquote,
+.wmde-markdown > blockquote blockquote {
+margin: 0;
+border-left: 0.25em solid #dfe2e5;
+color: #6a737d;
+padding: 0 1em;
+}
+.wmde-markdown > blockquote > :last-child,
+.wmde-markdown > blockquote blockquote > :last-child {
+margin-bottom: 0;
+}
+.wmde-markdown > blockquote > :first-child,
+.wmde-markdown > blockquote blockquote > :first-child {
+margin-top: 0;
+}
+.wmde-markdown hr {
+margin: 1.5em auto;
+border: 0;
+border-top: 2px dotted #eee;
+height: 1px;
+}
+.wmde-markdown > table,
+.wmde-markdown > blockquote table {
+display: block;
+overflow: auto;
+width: 100%;
+border-collapse: collapse;
+border-spacing: 0;
+font-size: 14px;
+}
+.wmde-markdown > table tr,
+.wmde-markdown > blockquote table tr {
+background-color: #fff;
+border-top: 1px solid #c6cbd1;
+}
+.wmde-markdown > table td,
+.wmde-markdown > blockquote table td,
+.wmde-markdown > table th,
+.wmde-markdown > blockquote table th {
+border: 1px solid #dfe2e5;
+padding: 6px 13px;
+}
+.wmde-markdown blockquote,
+.wmde-markdown details,
+.wmde-markdown dl,
+.wmde-markdown ol,
+.wmde-markdown p,
+.wmde-markdown pre,
+.wmde-markdown table,
+.wmde-markdown ul {
+margin-bottom: 16px;
+margin-top: 0;
+}
+.wmde-markdown a {
+color: #0366d6;
+text-decoration: none;
+}
+.wmde-markdown a:hover {
+text-decoration: underline;
+}
+.wmde-markdown .namespace {
+opacity: 0.7;
+}
+.wmde-markdown .token.important {
+font-weight: normal;
+}
+.wmde-markdown .token.bold {
+font-weight: bold;
+}
+.wmde-markdown .token.italic {
+font-style: italic;
+}
+.wmde-markdown .token.entity {
+cursor: help;
+}
+.wmde-markdown kbd {
+background-color: #fafbfc;
+border-bottom-color: #d1d5da;
+border: 1px solid #d1d5da;
+border-radius: 3px;
+box-shadow: inset 0 -1px 0 #d1d5da;
+color: #56595d;
+display: inline-block;
+font-size: 10px;
+font-family: ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono, Menlo, monospace;
+line-height: 10px;
+padding: 2px 4px;
+vertical-align: middle;
+}
+.wmde-markdown .token.tag .attr-value {
+color: #032f62;
+}
+.wmde-markdown .token.property,
+.wmde-markdown .token.tag,
+.wmde-markdown .token.boolean,
+.wmde-markdown .token.number,
+.wmde-markdown .token.function-name,
+.wmde-markdown .token.constant,
+.wmde-markdown .token.symbol,
+.wmde-markdown .token.deleted {
+color: #0060c9;
+}
+.wmde-markdown .token.punctuation {
+color: #a0a0a0;
+}
+.wmde-markdown code[class*="language-"] {
+color: black;
+}
+.wmde-markdown code[class*="language-"] .token.selector,
+.wmde-markdown code[class*="language-"] .token.attr-name,
+.wmde-markdown code[class*="language-"] .token.string,
+.wmde-markdown code[class*="language-"] .token.char,
+.wmde-markdown code[class*="language-"] .token.function,
+.wmde-markdown code[class*="language-"] .token.builtin {
+color: #6f42c1;
+}
+.wmde-markdown code[class*="language-"] .token.inserted {
+color: #22863a;
+background-color: #f0fff4;
+}
+.wmde-markdown code[class*="language-"] .token.deleted {
+color: #b31d28;
+background-color: #ffeef0;
+}
+.wmde-markdown code[class*="language-"] .token.class-name {
+color: #6f42c1;
+}
+.wmde-markdown code[class*="language-"] .code-block {
+color: #032f62;
+}
+.wmde-markdown code[class*="language-"] .token.comment,
+.wmde-markdown code[class*="language-"] .token.block-comment,
+.wmde-markdown code[class*="language-"] .token.prolog,
+.wmde-markdown code[class*="language-"] .token.doctype,
+.wmde-markdown code[class*="language-"] .token.cdata {
+color: #7D8B99;
+}
+.wmde-markdown code[class*="language-"] .token.punctuation {
+color: #a0a0a0;
+}
+.wmde-markdown code[class*="language-"] .token.operator,
+.wmde-markdown code[class*="language-"] .token.entity,
+.wmde-markdown code[class*="language-"] .token.url,
+.wmde-markdown code[class*="language-"] .token.variable {
+color: #d73a49;
+background: rgba(255, 255, 255, 0.5);
+}
+.wmde-markdown code[class*="language-"] .token.atrule,
+.wmde-markdown code[class*="language-"] .token.attr-value {
+color: #004698;
+}
+.wmde-markdown code[class*="language-"] .token.keyword {
+color: #d63200;
+}
+.wmde-markdown code[class*="language-"] .token.regex,
+.wmde-markdown code[class*="language-"] .token.important {
+color: #e90;
+}
+.wmde-markdown code[class*="language-"] .token.string {
+color: #0a53c1;
+}</style>
+    <style></style>
+  </head>
+  <body><div class="wmde-markdown">
+    <h2 id="next-remove-imports"><a class="anchor" aria-hidden="true" tabindex="-1" href="#next-remove-imports"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>next-remove-imports</h2>
+    <p><a href="https://www.npmjs.com/package/next-remove-imports"><img src="https://img.shields.io/npm/dm/next-remove-imports.svg?style=flat" alt="NPM Downloads"></a> <a href="https://github.com/uiwjs/next-remove-imports/actions/workflows/ci.yml"><img src="https://github.com/uiwjs/next-remove-imports/actions/workflows/ci.yml/badge.svg" alt="Build &#x26; Deploy"></a></p>
+    <p>This is a plugin for <a href="https://github.com/vercel/next.js">nextjs</a>. The default behavior is to remove all <code>.less</code>/<code>.css</code>/<code>.scss</code>/<code>.sass</code>/<code>.styl</code> imports from all packages in node_modules.</p>
+    <blockquote>
+      <p>⚠️ <a href="https://github.com/vercel/next.js/blob/master/errors/css-npm.md">CSS Imported by a Dependency</a> <a href="https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341"><code>#52</code></a></p>
+    </blockquote>
+    <h2 id="install"><a class="anchor" aria-hidden="true" tabindex="-1" href="#install"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Install</h2>
+    <pre class="language-shell"><code class="language-shell"><span class="token function">npm</span> <span class="token function">install</span> next-remove-imports
+<span class="token comment"># or</span>
+<span class="token function">yarn</span> <span class="token function">add</span> next-remove-imports
+</code></pre>
+    <h2 id="usage"><a class="anchor" aria-hidden="true" tabindex="-1" href="#usage"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Usage</h2>
+    <pre class="language-js"><code class="language-js"><span class="token comment">// next.config.js</span>
+<span class="token keyword">const</span> removeImports <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'next-remove-imports'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  options<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token function">removeImports</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+    <pre class="language-js"><code class="language-js"><span class="token comment">// next.config.js</span>
+<span class="token keyword">const</span> removeImports <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'next-remove-imports'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token function">removeImports</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function">webpack</span><span class="token punctuation">(</span><span class="token parameter">config<span class="token punctuation">,</span> options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> config
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+    <pre class="language-js"><code class="language-js"><span class="token comment">// next.config.js</span>
+<span class="token keyword">const</span> removeImports <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'next-remove-imports'</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+  matchImports<span class="token operator">:</span> <span class="token string">"\\.(less|css|scss|sass|styl)$"</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token function">removeImports</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function">webpack</span><span class="token punctuation">(</span><span class="token parameter">config<span class="token punctuation">,</span> options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> config
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+    <h2 id="license"><a class="anchor" aria-hidden="true" tabindex="-1" href="#license"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>License</h2>
+    <p>Licensed under the MIT License.</p>
+  </div></body>
+</html>
