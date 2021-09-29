@@ -2,6 +2,7 @@
   "name": "next-remove-imports",
   "version": "1.0.5",
   "description": "The default behavior is to remove all `.less`/`.css`/`.scss`/`.sass`/`.styl` imports from all packages in node_modules.",
+  "homepage": "https://uiwjs.github.io/next-remove-imports/",
   "main": "index.js",
   "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT",
