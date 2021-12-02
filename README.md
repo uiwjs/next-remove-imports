@@ -34,7 +34,7 @@ module.exports = removeImports({
   webpack(config, options) {
     return config
   },
-})
+});
 ```
 
 ```js
@@ -42,13 +42,24 @@ module.exports = removeImports({
 const removeImports = require('next-remove-imports')({
   test: /node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/,
   matchImports: "\\.(less|css|scss|sass|styl)$"
-})
+});
 
 module.exports = removeImports({
   webpack(config, options) {
     return config
   },
-})
+});
+```
+
+```js
+// next.config.js
+const removeImports = require('next-remove-imports')();
+
+module.exports = (phase, { defaultConfig }) => {
+  return removeImports({
+    ...defaultConfig
+  });
+};
 ```
 
 ## License
