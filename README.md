@@ -1,7 +1,8 @@
 next-remove-imports
----
+===
 
 [![NPM Downloads](https://img.shields.io/npm/dm/next-remove-imports.svg?style=flat)](https://www.npmjs.com/package/next-remove-imports) [![Build & Deploy](https://github.com/uiwjs/next-remove-imports/actions/workflows/ci.yml/badge.svg)](https://github.com/uiwjs/next-remove-imports/actions/workflows/ci.yml)
+[![Repo Dependents](https://badgen.net/github/dependents-repo/uiwjs/next-remove-imports)](https://github.com/uiwjs/next-remove-imports/network/dependents)
 
 This is a plugin for [nextjs](https://github.com/vercel/next.js). The default behavior is to remove all `.less`/`.css`/`.scss`/`.sass`/`.styl` imports from all packages in node_modules.
 
