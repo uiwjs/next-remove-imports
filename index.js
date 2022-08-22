@@ -6,11 +6,16 @@ module.exports = (pluginOptions = {}) => (nextConfig = {}) => {
       if (!options.isServer) {
         config.module.rules.unshift({
           test: test,
-          loader: require.resolve('babel-loader'),
+          loader: require.resolve('babel-loader', {
+            paths: [process.cwd()]
+          }),
           options: {
             plugins: [
               [
-                require.resolve('babel-plugin-transform-remove-imports'), {
+                require.resolve('babel-plugin-transform-remove-imports', {
+                  // https://nodejs.org/api/modules.html#requireresolverequest-options
+                  paths: [process.cwd()]
+                }), {
                   "test": matchImports
                 }
               ]
