@@ -1,0 +1,27 @@
+{
+  "name": "next-remove-imports",
+  "version": "1.0.7",
+  "description": "The default behavior is to remove all `.less`/`.css`/`.scss`/`.sass`/`.styl` imports from all packages in node_modules.",
+  "homepage": "https://uiwjs.github.io/next-remove-imports/",
+  "main": "index.js",
+  "author": "kenny wang <wowohoo@qq.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uiwjs/next-remove-imports"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "nextjs",
+    "serverless",
+    "plugin",
+    "next"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.14.3",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-transform-remove-imports": "^1.5.4"
+  }
+}
