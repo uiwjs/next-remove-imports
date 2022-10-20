@@ -14,8 +14,12 @@ jobs:
           node-version: 16
 
       - run: mkdir -p build
-      - run: npm i markdown-to-html-cli -g
-      - run: markdown-to-html --output build/index.html --github-corners https://github.com/uiwjs/next-remove-imports
+      - name: Converts Markdown to HTML
+        uses: jaywcjlove/markdown-to-html-cli@main
+        with:
+          source: core/README.md
+          output: build/index.html
+          github-corners: https://github.com/uiwjs/next-remove-imports
 
       - name: Build and Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -30,7 +34,7 @@ jobs:
         uses: jaywcjlove/create-tag-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          package-path: ./package.json
+          package-path: ./core/package.json
 
       - name: Generate Changelog
         id: changelog
