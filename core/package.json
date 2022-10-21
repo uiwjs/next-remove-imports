@@ -15,7 +15,7 @@
     "build": "tsbb build --entry ./src/index.ts --no-esm"
   },
   "files": [
-    "index.js"
+    "lib"
   ],
   "keywords": [
     "nextjs",
