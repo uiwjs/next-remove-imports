@@ -1,5 +1,6 @@
 build
 dist
+core/lib
 node_modules
 package-lock.json
 

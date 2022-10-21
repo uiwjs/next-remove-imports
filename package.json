@@ -21,6 +21,7 @@
     "core", "example"
   ],
   "devDependencies": {
-    "lerna": "^6.0.1"
+    "lerna": "^6.0.1",
+    "tsbb" : "^3.7.7"
   }
 }
