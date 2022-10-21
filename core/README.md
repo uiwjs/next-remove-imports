@@ -6,9 +6,13 @@ next-remove-imports
 
 This is a plugin for [nextjs](https://github.com/vercel/next.js). The default behavior is to remove all `.less`/`.css`/`.scss`/`.sass`/`.styl` imports from all packages in node_modules.
 
-> ⚠️ [CSS Imported by a Dependency](https://github.com/vercel/next.js/blob/master/errors/css-npm.md) [`#52`](https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341)
+> **Warning**
+> [CSS Imported by a Dependency](https://github.com/vercel/next.js/blob/master/errors/css-npm.md) [`#52`](https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341)
 > - https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341
 > - https://github.com/vercel/next.js/issues/9607
+> - Example: https://codesandbox.io/s/nextjs-example-react-md-editor-qjhn7?file=/pages/index.js  
+> - Example: [@uiwjs/next-remove-imports/example](https://github.com/uiwjs/next-remove-imports/tree/main/example)  
+> - Example: https://next-remove-imports-example.vercel.app
 
 ## Install
 
