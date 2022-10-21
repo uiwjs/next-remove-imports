@@ -5,6 +5,7 @@
   },
   "scripts": {
     "postinstall": "lerna run build",
+    "version": "lerna version --no-changelog --no-git-tag-version --no-push --yes",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
