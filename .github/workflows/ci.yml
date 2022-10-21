@@ -13,6 +13,10 @@ jobs:
         with:
           node-version: 16
 
+      - name: 📦 next-remove-imports build
+        working-directory: core
+        run: npm run build
+
       - run: mkdir -p build
       - name: Converts Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
