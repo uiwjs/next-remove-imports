@@ -4,6 +4,11 @@ import mdsource from 'next-remove-imports/README.md';
 import "@uiw/react-markdown-preview/markdown.css";
 import "@uiw/react-md-editor/markdown-editor.css";
 
+const GitHubCorners = dynamic(
+  () => import("@uiw/react-github-corners").then((mod) => mod.default),
+  { ssr: false }
+);
+
 const MarkdownPreview = dynamic(
   () => import("@uiw/react-markdown-preview").then((mod) => mod.default),
   { ssr: false }
@@ -24,6 +29,7 @@ const source = `
 export default function Home() {
   return (
     <div className="container">
+      <GitHubCorners href="https://github.com/uiwjs/next-remove-imports" fixed />
       <Head>
         <title>next-remove-imports</title>
         <link rel="icon" href="/favicon.ico" />
