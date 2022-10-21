@@ -4,6 +4,7 @@
     "example": "example"
   },
   "scripts": {
+    "postinstall": "lerna run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
