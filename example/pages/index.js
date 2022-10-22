@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import mdsource from 'next-remove-imports/README.md';
 import "@uiw/react-markdown-preview/markdown.css";
 import "@uiw/react-md-editor/markdown-editor.css";
+import { useState } from 'react';
 
 const GitHubCorners = dynamic(
   () => import("@uiw/react-github-corners").then((mod) => mod.default),
@@ -27,6 +28,7 @@ const source = `
 `;
 
 export default function Home() {
+  const [value, setValue] = useState(source)
   return (
     <div className="container">
       <GitHubCorners href="https://github.com/uiwjs/next-remove-imports" fixed />
@@ -40,7 +42,7 @@ export default function Home() {
           next-remove-imports
         </h1>
         <div style={{ minWidth: '40rem', padding: '5rem 0' }}>
-          <MDEditor value={source} />
+          <MDEditor value={value} onChange={setValue} />
         </div>
         <div>
           <MarkdownPreview warpperElement={{
