@@ -1,6 +1,6 @@
 {
   "name": "example-esm",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -16,7 +16,7 @@
     "@uiw/react-md-editor": "^3.19.1",
     "@wcj/dark-mode": "^1.0.15",
     "next": "^13.0.0",
-    "next-remove-imports": "^1.0.8",
+    "next-remove-imports": "^1.0.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
