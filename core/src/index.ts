@@ -1,4 +1,5 @@
 import { NextConfig } from 'next';
+import { WebpackConfigContext } from 'next/dist/server/config-shared';
 
 type PluginOptions = {
   test?: RegExp;
@@ -9,7 +10,7 @@ export default (pluginOptions: PluginOptions = {}) => (nextConfig: NextConfig = 
   const test = pluginOptions.test || /node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/;
   const matchImports = pluginOptions.matchImports || "\\.(less|css|scss|sass|styl)$";
   return Object.assign({}, nextConfig, {
-    webpack(config, options) {
+    webpack(config: any, options: WebpackConfigContext) {
       if (!options.isServer) {
         config.module.rules.unshift({
           test: test,
