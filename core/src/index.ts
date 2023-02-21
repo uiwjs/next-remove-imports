@@ -1,8 +1,14 @@
 import { NextConfig } from 'next';
 import { WebpackConfigContext } from 'next/dist/server/config-shared';
 
-type PluginOptions = {
+export type PluginOptions = {
+  /**
+   * @default "/node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/"
+   */
   test?: RegExp;
+  /**
+   * @default "\\.(less|css|scss|sass|styl)$"
+   */
   matchImports?: string;
 }
 

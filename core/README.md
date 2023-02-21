@@ -30,7 +30,8 @@ import removeImports from 'next-remove-imports'
 
 /** @type {function(import("next").NextConfig): import("next").NextConfig}} */
 const removeImportsFun = removeImports({
-  options: { },
+  // test: /node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/,
+  // matchImports: "\\.(less|css|scss|sass|styl)$"
 });
 
 export default removeImportsFun({
@@ -81,6 +82,21 @@ module.exports = (phase, { defaultConfig }) => {
     ...defaultConfig
   });
 };
+```
+
+## Options
+
+```typescript
+export type PluginOptions = {
+  /**
+   * @default "/node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/"
+   */
+  test?: RegExp;
+  /**
+   * @default "\\.(less|css|scss|sass|styl)$"
+   */
+  matchImports?: string;
+}
 ```
 
 ## License
