@@ -12,13 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/uiwjs/next-remove-imports.git"
   },
-  "keywords": [],
-  "author": "jaywcjlove",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/uiwjs/next-remove-imports/issues"
-  },
-  "homepage": "https://github.com/uiwjs/next-remove-imports#readme",
   "workspaces": [
     "core", "example/*"
   ],
