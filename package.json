@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/uiwjs/next-remove-imports#readme",
   "workspaces": [
-    "core", "example"
+    "core", "example/*"
   ],
   "devDependencies": {
     "babel-loader": "^9.0.0",

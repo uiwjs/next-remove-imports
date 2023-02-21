@@ -1,5 +1,5 @@
 {
-  "name": "example",
+  "name": "example-esm",
   "version": "1.0.8",
   "private": true,
   "scripts": {

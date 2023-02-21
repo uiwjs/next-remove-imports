@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+
       - run: npm install
       - name: 📦 next-remove-imports build
         working-directory: core
@@ -64,11 +66,18 @@ jobs:
 
             ${{ steps.changelog.outputs.changelog }}
 
+      - run: npm publish
+        name: 📦 next-remove-imports publish to NPM
+        working-directory: core
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       # - run: npm install @jsdevtools/npm-publish -g
       # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./package.json
 
-      - name: 📦 next-remove-imports publish to NPM
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./core/package.json
+      # - name: 📦 next-remove-imports publish to NPM
+      #   uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
+      #     package: ./core/package.json

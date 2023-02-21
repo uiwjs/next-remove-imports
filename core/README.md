@@ -11,7 +11,7 @@ This is a plugin for [nextjs](https://github.com/vercel/next.js). The default be
 > - https://github.com/uiwjs/react-md-editor/issues/52#issuecomment-848969341
 > - https://github.com/vercel/next.js/issues/9607
 > - Example: https://codesandbox.io/s/nextjs-example-react-md-editor-qjhn7?file=/pages/index.js  
-> - Example: [@uiwjs/next-remove-imports/example](https://github.com/uiwjs/next-remove-imports/tree/main/example)  
+> - Example: [@uiwjs/next-remove-imports/example](https://github.com/uiwjs/next-remove-imports/tree/main/example/cjs)  
 > - Example: https://next-remove-imports-example.vercel.app
 
 ## Install
@@ -23,6 +23,22 @@ yarn add next-remove-imports
 ```
 
 ## Usage
+
+```javascript
+// next.config.mjs
+import removeImports from 'next-remove-imports'
+
+/** @type {function(import("next").NextConfig): import("next").NextConfig}} */
+const removeImportsFun = removeImports({
+  options: { },
+});
+
+export default removeImportsFun({
+  webpack(config, options) {
+    return config
+  },
+});
+```
 
 ```js
 // next.config.js
