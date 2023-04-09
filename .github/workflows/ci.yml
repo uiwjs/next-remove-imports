@@ -19,6 +19,14 @@ jobs:
         working-directory: core
         run: npm run build
 
+      - name: example build
+        working-directory: example/cjs
+        run: npm run build
+
+      - name: example build
+        working-directory: example/esm
+        run: npm run build
+
       - run: mkdir -p build
       - name: Converts Markdown to HTML
         uses: jaywcjlove/markdown-to-html-cli@main
