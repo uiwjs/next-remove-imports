@@ -11,8 +11,8 @@
     "url": "https://github.com/uiwjs/next-remove-imports"
   },
   "scripts": {
-    "watch": "tsbb watch --entry ./src/index.ts --no-esm",
-    "build": "tsbb build --entry ./src/index.ts --no-esm"
+    "watch": "tsbb watch",
+    "build": "tsbb build"
   },
   "files": [
     "lib"
@@ -24,8 +24,8 @@
     "next"
   ],
   "dependencies": {
-    "@babel/core": "^7.14.3",
-    "babel-loader": "^9.0.0",
-    "babel-plugin-transform-remove-imports": "^1.5.4"
+    "@babel/core": "^7.21.4",
+    "babel-loader": "^9.1.2",
+    "babel-plugin-transform-remove-imports": "^1.7.0"
   }
 }

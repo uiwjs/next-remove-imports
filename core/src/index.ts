@@ -12,7 +12,7 @@ export type PluginOptions = {
   matchImports?: string;
 }
 
-export default (pluginOptions: PluginOptions = {}) => (nextConfig: NextConfig = {}): NextConfig => {
+const removeImports = (pluginOptions: PluginOptions = {}) => (nextConfig: NextConfig = {}): NextConfig => {
   const test = pluginOptions.test || /node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/;
   const matchImports = pluginOptions.matchImports || "\\.(less|css|scss|sass|styl)$";
   return Object.assign({}, nextConfig, {
@@ -44,4 +44,6 @@ export default (pluginOptions: PluginOptions = {}) => (nextConfig: NextConfig = 
     },
   })
 }
-
+export default removeImports
+// @ts-ignore
+export = removeImports
