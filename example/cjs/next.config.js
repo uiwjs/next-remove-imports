@@ -1,6 +1,6 @@
-const removeImports = require('next-remove-imports')();
+const removeImports = require('next-remove-imports');
 
-module.exports = removeImports({
+module.exports = removeImports()({
   // ✅  options...
   webpack: function(config) {
     config.module.rules.push({

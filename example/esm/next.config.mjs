@@ -1,4 +1,4 @@
-import removeImports from 'next-remove-imports'
+import removeImports from 'next-remove-imports';
 
 /** @type {function(import("next").NextConfig): import("next").NextConfig}} */
 const removeImportsFun = removeImports({
