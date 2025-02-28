@@ -16,7 +16,7 @@
     "core", "example/*"
   ],
   "devDependencies": {
-    "babel-loader": "^9.1.2",
+    "babel-loader": "^10.0.0",
     "lerna": "^7.1.0",
     "tsbb": "^4.1.5"
   }
