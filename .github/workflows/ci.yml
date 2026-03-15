@@ -79,12 +79,3 @@ jobs:
         name: 📦 next-remove-imports publish to NPM
         working-directory: core
         continue-on-error: true
-
-      # - run: npm install @jsdevtools/npm-publish -g
-      # - run: npm-publish --token="${{ secrets.NPM_TOKEN }}" ./package.json
-
-      # - name: 📦 next-remove-imports publish to NPM
-      #   uses: JS-DevTools/npm-publish@v1
-      #   with:
-      #     token: ${{ secrets.NPM_TOKEN }}
-      #     package: ./core/package.json
